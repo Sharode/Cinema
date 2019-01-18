@@ -1,26 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import NavBar from "./components/navbar";
+import Content from "./components/content";
+import Api from "./components/api";
+import axios from "axios";
 
 class App extends Component {
+  state = {
+    genres: []
+  };
+  async componentDidMount() {
+    let url =
+      "https://api.themoviedb.org/3/discover/movie?api_key=0ed0947f19031ae2c4b500da3a5904a2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=2019";
+
+    const { data: items } = await axios.get(url);
+
+    console.log(items.results);
+    this.setState({ genres: items.results });
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <React.Fragment>
+        <NavBar />
+        <div className="container">
+          <Content />
+          <Api items={this.state.genres} />
+        </div>
+      </React.Fragment>
     );
   }
 }
