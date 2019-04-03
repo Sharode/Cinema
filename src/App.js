@@ -2,31 +2,63 @@ import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./components/navbar";
 import Content from "./components/content";
-import Api from "./components/api";
+import Movie from "./components/movie";
 import axios from "axios";
+import Pagination from "./components/common/pagination";
+import { paginate } from "./utils/paginate";
 
 class App extends Component {
   state = {
-    genres: []
+    movies: [],
+    genres: [],
+    pageSize: 12,
+    currentPage: 1
   };
+
   async componentDidMount() {
-    let url =
-      "https://api.themoviedb.org/3/discover/movie?api_key=0ed0947f19031ae2c4b500da3a5904a2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=2019";
+    let movies = [];
+    for (let i = 1; i <= 5; i++) {
+      let url = `https://api.themoviedb.org/3/discover/movie?api_key=68f7e49d39fd0c0a1dd9bd094d9a8c75&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}`;
 
-    const { data: items } = await axios.get(url);
+      const { data: items } = await axios.get(url);
 
-    console.log(items.results);
-    this.setState({ genres: items.results });
+      movies = [...movies, ...items.results];
+    }
+
+    const { data: category } = await axios.get(
+      "https://api.themoviedb.org/3/genre/movie/list?api_key=68f7e49d39fd0c0a1dd9bd094d9a8c75&language=en-US"
+    );
+
+    // console.log(movies);
+    // console.log(category.genres[0]);
+
+    this.setState({ movies, genres: category.genres });
   }
   render() {
+    const { pageSize, currentPage, movies, genres } = this.state;
+
+    const movie = paginate(movies, currentPage, pageSize);
     return (
-      <React.Fragment>
+      <div>
         <NavBar />
         <div className="container">
           <Content />
-          <Api items={this.state.genres} />
+          <Movie
+            movies={movie}
+            genres={genres}
+            pageSize={pageSize}
+            currentPage={currentPage}
+          />
+          <Pagination
+            itemsCount={movies.length}
+            pageSize={pageSize}
+            onPageChange={page => {
+              this.setState({ currentPage: page });
+            }}
+            currentPage={currentPage}
+          />
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

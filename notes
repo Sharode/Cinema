@@ -1,0 +1,12 @@
+how to do pagaination
+
+make it reusable
+
+1) initial a page size in the state and send the prop to the pagaination component
+2)raise an event when a page is clicke on
+3) use bootstrap pagination classes
+4) need an array of page number and map it to a list item for the pages
+    // use itemcount and pagesize
+  const pagesCount = itemsCount / pageSize;
+  5) use lodash
+  6) raise onclick event in a tag
