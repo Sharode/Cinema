@@ -3,10 +3,7 @@ import React from "react";
 const Content = () => {
   return (
     <div>
-      <h3>
-        This is Flix and Chill, select your genre of interest and your current
-        mood on a scale 1-10
-      </h3>
+      <h3>Select your genre of interest for a better recommedation.</h3>
     </div>
   );
 };
