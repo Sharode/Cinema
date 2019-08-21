@@ -1,5 +1,4 @@
 import React from "react";
-import searchForm from "./searchForm";
 
 const image = {
   width: "100%",
@@ -34,8 +33,7 @@ const Movie = ({ movies, genres, pageSize, currentPage, selectedGenre }) => {
                 </h5>
               </div>
             );
-          } else if (true) {
-            console.log(selectedGenre);
+          } else if (selectedGenre === ui_genre[0].name) {
             return (
               <div key={movie.id} className="col-md-3 col-sm-12">
                 <img

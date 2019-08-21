@@ -3,7 +3,8 @@ import React from "react";
 const navStyle = {
   float: "left",
   textAlign: "center",
-  width: "100%"
+  width: "100%",
+  fontSize: 32
 };
 const NavBar = () => {
   return (

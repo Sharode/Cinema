@@ -19,7 +19,7 @@ class App extends Component {
 
   async componentDidMount() {
     let movies = [];
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 7; i++) {
       let url = `https://api.themoviedb.org/3/discover/movie?api_key=68f7e49d39fd0c0a1dd9bd094d9a8c75&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}`;
 
       const { data: items } = await axios.get(url);
@@ -43,7 +43,7 @@ class App extends Component {
 
     console.log(genre);
 
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 7; i++) {
       let url = `https://api.themoviedb.org/3/discover/movie?api_key=68f7e49d39fd0c0a1dd9bd094d9a8c75&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}&with_genres=${
         genre[0].id
       }`;
