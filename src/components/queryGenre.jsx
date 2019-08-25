@@ -4,7 +4,7 @@ const queryGenre = ({ genres, onSubmit, onChange }) => {
   return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group">
-        <select name="genre" onChange={e => onChange(e)}>
+        <select name="genre" className="form-control" onChange={e => onChange(e)}>
           {genres.map(genre => (
             <option key={genre.id} value={genre.name}>
               {genre.name}

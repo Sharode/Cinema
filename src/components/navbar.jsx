@@ -9,9 +9,10 @@ const navStyle = {
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <span className="navbar-brand" style={navStyle}>
-        Flix & Chill
-      </span>
+      <a href="/"><span className="navbar-brand" style={navStyle}>
+        Flix-N-Chill
+      </span></a>
+
     </nav>
   );
 };
