@@ -1,4 +1,4 @@
-# Flix & Chill
+# Cinema
 
 Flix is a progressive web app that allows users to search for popular movies by genre. This application uses The Movie Database API. Check here for the documentation https://developers.themoviedb.org/3
 
